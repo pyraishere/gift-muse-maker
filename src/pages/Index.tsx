@@ -14,39 +14,34 @@ const Index = () => {
     setIsLoading(true);
     
     try {
-      // TODO: Replace with actual API call to edge function
-      // Simulating API call for now
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Mock data - will be replaced with real API response
-      const mockIdeas: GiftIdea[] = [
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-gifts`,
         {
-          title: "Cozy Reading Lamp",
-          description: "Perfect for late-night reading sessions. This adjustable LED lamp provides warm, eye-friendly lighting for book lovers.",
-          keyword: "adjustable led reading lamp warm light"
-        },
-        {
-          title: "Gourmet Coffee Sampler",
-          description: "A collection of premium coffee beans from around the world. Great for coffee enthusiasts who enjoy trying new flavors.",
-          keyword: "gourmet coffee sampler gift set"
-        },
-        {
-          title: "Personalized Journal",
-          description: "A beautiful leather-bound journal with custom embossing. Ideal for capturing thoughts, dreams, and daily reflections.",
-          keyword: "personalized leather journal custom"
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
-      ];
-      
-      setGiftIdeas(mockIdeas);
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate gift ideas");
+      }
+
+      setGiftIdeas(data.giftIdeas);
       
       toast({
         title: "Gift ideas generated!",
         description: "Check out these perfect gift suggestions.",
       });
     } catch (error) {
+      console.error("Error generating gifts:", error);
       toast({
         title: "Something went wrong",
-        description: "Please try again later.",
+        description: error instanceof Error ? error.message : "Please try again later.",
         variant: "destructive",
       });
     } finally {
