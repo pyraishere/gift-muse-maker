@@ -69,7 +69,7 @@ const Index = () => {
             </div>
           </div>
           <h1 className="text-5xl font-bold text-foreground mb-3">
-            GiftGenius
+            WhatShouldIBuy
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             AI-powered gift recommendations tailored to your loved ones
