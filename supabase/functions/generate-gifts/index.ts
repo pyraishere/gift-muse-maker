@@ -20,15 +20,15 @@ serve(async (req) => {
 
     console.log("Generating gift ideas for:", { recipient, occasion, interests, budget });
 
-    const systemPrompt = `You are a helpful gift recommendation assistant. Generate creative, thoughtful gift ideas based on the user's requirements. Always respond with exactly 3 gift suggestions in valid JSON format.`;
+    const systemPrompt = `You are a helpful gift recommendation assistant. Generate creative, thoughtful gift ideas based on the user's requirements. Always respond with exactly 5 gift suggestions in valid JSON format.`;
 
-    const userPrompt = `Generate 3 gift ideas for:
+    const userPrompt = `Generate 5 gift ideas for:
 - Recipient: ${recipient}
 - Occasion: ${occasion}
 - Interests: ${interests}
 - Budget: ${budget}
 
-Respond with a JSON array containing exactly 3 objects, each with:
+Respond with a JSON array containing exactly 5 objects, each with:
 - "title": short gift name (2-4 words)
 - "description": why this gift is perfect (1-2 sentences)
 - "keyword": Amazon search keywords for this product (3-5 words)
