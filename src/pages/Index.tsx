@@ -4,6 +4,7 @@ import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
 import { Gift, RotateCcw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import confetti from "canvas-confetti";
 
 const Index = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
@@ -32,6 +33,14 @@ const Index = () => {
       }
 
       setGiftIdeas(data.giftIdeas);
+      
+      // Trigger confetti celebration
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff'],
+      });
       
       toast({
         title: "Gift ideas generated!",
