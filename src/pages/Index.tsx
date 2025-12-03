@@ -118,7 +118,7 @@ const Index = () => {
               Gift Giving Blog
             </Button>
           </Link>
-          <p>Powered by AI • Amazon Affiliate Links</p>
+          <p>Powered by AI • Amazon & Etsy Affiliate Links</p>
         </footer>
       </div>
     </div>
