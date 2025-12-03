@@ -6,12 +6,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BlogPosts from "./pages/BlogPosts";
 import NotFound from "./pages/NotFound";
+import { CursorTrail } from "./components/CursorTrail";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CursorTrail />
       <Toaster />
       <Sonner />
       <BrowserRouter>

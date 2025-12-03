@@ -110,6 +110,16 @@ export default {
             transform: "scale(0.5) translateY(-10px)",
           },
         },
+        "cursor-fade": {
+          "0%": {
+            opacity: "1",
+            transform: "translate(-50%, -50%) scale(1)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translate(-50%, -50%) scale(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -117,6 +127,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "slide-up": "slide-up 0.6s ease-out",
         "gift-fade": "gift-fade 0.6s ease-out forwards",
+        "cursor-fade": "cursor-fade 0.5s ease-out forwards",
       },
       backgroundImage: {
         "gradient-warm": "var(--gradient-warm)",
