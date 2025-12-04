@@ -34,21 +34,46 @@ export const CursorTrail = () => {
     return () => clearInterval(cleanup);
   }, []);
 
+  // Generate smooth bezier curve path
+  const getSmoothPath = (points: TrailPoint[]) => {
+    if (points.length < 2) return "";
+    
+    let path = `M ${points[0].x} ${points[0].y}`;
+    
+    for (let i = 1; i < points.length - 1; i++) {
+      const prev = points[i - 1];
+      const curr = points[i];
+      const next = points[i + 1];
+      
+      // Calculate control point (midpoint between current and next)
+      const cpX = (curr.x + next.x) / 2;
+      const cpY = (curr.y + next.y) / 2;
+      
+      // Use quadratic bezier curve
+      path += ` Q ${curr.x} ${curr.y} ${cpX} ${cpY}`;
+    }
+    
+    // Add the last point
+    if (points.length > 1) {
+      const last = points[points.length - 1];
+      path += ` L ${last.x} ${last.y}`;
+    }
+    
+    return path;
+  };
+
   return (
     <svg className="pointer-events-none fixed inset-0 z-50 overflow-hidden w-full h-full">
       {trail.length > 1 && (
         <path
-          d={trail.reduce((acc, point, index) => {
-            if (index === 0) return `M ${point.x} ${point.y}`;
-            return `${acc} L ${point.x} ${point.y}`;
-          }, "")}
+          d={getSmoothPath(trail)}
           fill="none"
           stroke="hsl(12 88% 65%)"
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{
-            filter: "drop-shadow(0 0 6px hsl(12 88% 65% / 0.6))",
+            filter: "drop-shadow(0 0 8px hsl(12 88% 65% / 0.7))",
           }}
         />
       )}
