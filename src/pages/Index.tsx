@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
-import { Gift, RotateCcw, BookOpen } from "lucide-react";
+import { Gift, RotateCcw, BookOpen, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import confetti from "canvas-confetti";
@@ -10,9 +10,9 @@ import confetti from "canvas-confetti";
 const Index = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastFormData, setLastFormData] = useState<GiftFormData | null>(null);
   const { toast } = useToast();
-
-  const handleSubmit = async (formData: GiftFormData) => {
+  const generateGifts = async (formData: GiftFormData) => {
     setIsLoading(true);
     
     try {
@@ -59,6 +59,17 @@ const Index = () => {
     }
   };
 
+  const handleSubmit = async (formData: GiftFormData) => {
+    setLastFormData(formData);
+    await generateGifts(formData);
+  };
+
+  const handleRegenerate = async () => {
+    if (lastFormData) {
+      await generateGifts(lastFormData);
+    }
+  };
+
   const handleReset = () => {
     setGiftIdeas([]);
   };
@@ -91,14 +102,25 @@ const Index = () => {
                 <h2 className="text-3xl font-semibold text-foreground">
                   Perfect Gift Ideas
                 </h2>
-                <Button
-                  onClick={handleReset}
-                  variant="outline"
-                  className="flex items-center gap-2"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  Start Over
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={handleRegenerate}
+                    variant="default"
+                    className="flex items-center gap-2"
+                    disabled={isLoading}
+                  >
+                    <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+                    {isLoading ? 'Generating...' : 'Regenerate'}
+                  </Button>
+                  <Button
+                    onClick={handleReset}
+                    variant="outline"
+                    className="flex items-center gap-2"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    Start Over
+                  </Button>
+                </div>
               </div>
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
