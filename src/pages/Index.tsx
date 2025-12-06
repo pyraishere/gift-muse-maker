@@ -2,11 +2,10 @@ import { useState } from "react";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
-import { RotateCcw, BookOpen, RefreshCw } from "lucide-react";
+import { Gift, RotateCcw, BookOpen, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import confetti from "canvas-confetti";
-import wizardLogo from "@/assets/wizard-gift-logo.png";
 
 const Index = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
@@ -81,11 +80,9 @@ const Index = () => {
         {/* Header */}
         <header className="text-center mb-12 animate-fade-in">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <img 
-              src={wizardLogo} 
-              alt="Gift Wizard" 
-              className="w-24 h-24 object-contain drop-shadow-lg"
-            />
+            <div className="p-4 bg-gradient-warm rounded-2xl shadow-soft">
+              <Gift className="w-10 h-10 text-primary-foreground" />
+            </div>
           </div>
           <h1 className="text-5xl font-bold text-foreground mb-3">
             WhatShouldIBuy
