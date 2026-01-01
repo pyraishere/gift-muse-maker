@@ -146,7 +146,7 @@ const Index = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/10">
+              <Button className="gap-2 bg-gradient-warm text-primary-foreground hover:opacity-90 shadow-soft">
                 <Coffee className="h-4 w-4" />
                 Buy me a coffee
               </Button>
