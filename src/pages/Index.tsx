@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
-import { Gift, RotateCcw, BookOpen, RefreshCw } from "lucide-react";
+import { Gift, RotateCcw, BookOpen, RefreshCw, Coffee } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import confetti from "canvas-confetti";
@@ -133,13 +133,25 @@ const Index = () => {
         </main>
 
         {/* Footer */}
-        <footer className="mt-16 text-center text-muted-foreground text-sm space-y-3">
-          <Link to="/blog">
-            <Button variant="ghost" className="gap-2">
-              <BookOpen className="h-4 w-4" />
-              Gift Giving Blog
-            </Button>
-          </Link>
+        <footer className="mt-16 text-center text-muted-foreground text-sm space-y-4">
+          <div className="flex items-center justify-center gap-4">
+            <Link to="/blog">
+              <Button variant="ghost" className="gap-2">
+                <BookOpen className="h-4 w-4" />
+                Gift Giving Blog
+              </Button>
+            </Link>
+            <a
+              href="https://buymeacoffee.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/10">
+                <Coffee className="h-4 w-4" />
+                Buy me a coffee
+              </Button>
+            </a>
+          </div>
           <p>Powered by AI • Amazon & Etsy Affiliate Links</p>
         </footer>
       </div>
