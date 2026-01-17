@@ -134,7 +134,8 @@ const Index = () => {
 
         {/* Footer */}
         <footer className="mt-16 text-center text-muted-foreground text-sm space-y-6">
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-muted-foreground">Help cover hosting costs</span>
             <a
               href="https://buymeacoffee.com"
               target="_blank"
