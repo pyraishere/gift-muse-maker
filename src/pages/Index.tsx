@@ -137,7 +137,7 @@ const Index = () => {
           <div className="flex items-center justify-center gap-3">
             <span className="text-primary font-medium">Help cover hosting costs</span>
             <a
-              href="https://buymeacoffee.com"
+              href="https://buymeacoffee.com/arguablybestgifts"
               target="_blank"
               rel="noopener noreferrer"
             >
