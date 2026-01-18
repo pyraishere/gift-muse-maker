@@ -224,14 +224,14 @@ const Index = () => {
             </div>
           </div>
 
+          <p>Powered by AI • Amazon & Etsy Affiliate Links</p>
+
           <div className="flex flex-col items-center gap-1">
             <span>Questions or partnerships?</span>
             <a href="mailto:hello@arguablybestgifts.com" className="text-primary hover:underline">
               hello@arguablybestgifts.com
             </a>
           </div>
-
-          <p>Powered by AI • Amazon & Etsy Affiliate Links</p>
         </footer>
       </div>
     </div>
