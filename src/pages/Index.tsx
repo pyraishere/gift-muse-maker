@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
-import { Gift, RotateCcw, RefreshCw, Coffee, Share2 } from "lucide-react";
+import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 import confetti from "canvas-confetti";
@@ -76,6 +76,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      {/* Valentine's Day Banner */}
+      <div className="bg-gradient-to-r from-pink-100 via-red-50 to-pink-100 border-b border-pink-200">
+        <div className="container mx-auto px-4 py-2.5">
+          <div className="flex items-center justify-center gap-2 text-sm">
+            <Heart className="w-4 h-4 text-red-400 fill-red-400 animate-pulse" />
+            <span className="text-red-600 font-medium">Valentine's Day is coming!</span>
+            <span className="text-muted-foreground">Find the perfect gift for your special someone</span>
+            <Heart className="w-4 h-4 text-red-400 fill-red-400 animate-pulse" />
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <header className="text-center mb-12 animate-fade-in">
