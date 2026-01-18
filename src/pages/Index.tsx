@@ -88,7 +88,7 @@ const Index = () => {
             Arguably Best Gifts
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            AI-powered gift recommendations tailored to your loved ones
+            Thoughtful gift ideas when you're out of inspiration
           </p>
         </header>
 
