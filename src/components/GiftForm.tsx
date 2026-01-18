@@ -15,7 +15,6 @@ export interface GiftFormData {
   recipient: string;
   age: string;
   interests: string;
-  budget: string;
   occasion: string;
 }
 
@@ -24,7 +23,6 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
     recipient: "",
     age: "",
     interests: "",
-    budget: "",
     occasion: "",
   });
 
@@ -98,20 +96,6 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="budget" className="text-foreground font-medium">
-            Budget
-          </Label>
-          <Input
-            id="budget"
-            name="budget"
-            placeholder="e.g., 20-50, under 100"
-            value={formData.budget}
-            onChange={handleChange}
-            required
-            className="border-input bg-background"
-          />
-        </div>
 
         <div className="space-y-2">
           <Label htmlFor="occasion" className="text-foreground font-medium">
