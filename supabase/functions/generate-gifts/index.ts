@@ -11,14 +11,14 @@ serve(async (req) => {
   }
 
   try {
-    const { recipient, occasion, interests, budget } = await req.json();
+    const { recipient, occasion, interests } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    console.log("Generating gift ideas for:", { recipient, occasion, interests, budget });
+    console.log("Generating gift ideas for:", { recipient, occasion, interests });
 
     const systemPrompt = `You are a helpful gift recommendation assistant. Generate creative, thoughtful gift ideas based on the user's requirements. Always respond with exactly 6 gift suggestions in valid JSON format.`;
 
@@ -26,7 +26,6 @@ serve(async (req) => {
 - Recipient: ${recipient}
 - Occasion: ${occasion}
 - Interests: ${interests}
-- Budget: ${budget}
 
 Respond with a JSON array containing exactly 6 objects, each with:
 - "title": short gift name (2-4 words)
