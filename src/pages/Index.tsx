@@ -269,7 +269,7 @@ const Index = () => {
             </div>
           </div>
 
-          <p>Powered by AI • Amazon & Etsy Affiliate Links</p>
+          
 
           <div className="flex flex-col items-center gap-1">
             <span>Questions or partnerships?</span>
