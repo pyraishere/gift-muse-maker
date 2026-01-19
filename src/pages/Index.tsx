@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
-import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart } from "lucide-react";
+import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 import confetti from "canvas-confetti";
 
@@ -11,7 +12,23 @@ const Index = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [lastFormData, setLastFormData] = useState<GiftFormData | null>(null);
+  const [totalGenerated, setTotalGenerated] = useState<number | null>(null);
   const { toast } = useToast();
+
+  // Fetch the total generated count on mount
+  useEffect(() => {
+    const fetchCount = async () => {
+      const { data, error } = await supabase
+        .from('gift_generation_stats')
+        .select('total_generated')
+        .single();
+      
+      if (!error && data) {
+        setTotalGenerated(data.total_generated);
+      }
+    };
+    fetchCount();
+  }, []);
   const generateGifts = async (formData: GiftFormData) => {
     setIsLoading(true);
     
@@ -34,6 +51,11 @@ const Index = () => {
       }
 
       setGiftIdeas(data.giftIdeas);
+      
+      // Update the counter locally
+      if (data.giftIdeas?.length) {
+        setTotalGenerated(prev => prev !== null ? prev + data.giftIdeas.length : data.giftIdeas.length);
+      }
       
       // Trigger confetti celebration
       confetti({
@@ -146,6 +168,17 @@ const Index = () => {
 
         {/* Footer */}
         <footer className="mt-16 text-center text-muted-foreground text-sm space-y-6">
+          {/* Gift Ideas Counter */}
+          {totalGenerated !== null && (
+            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span>
+                <span className="font-semibold text-foreground">{totalGenerated.toLocaleString()}</span> gift ideas already generated
+              </span>
+              <Sparkles className="h-4 w-4 text-primary" />
+            </div>
+          )}
+
           <div className="flex items-center justify-center gap-3">
             <span className="text-primary font-medium">Help cover hosting costs</span>
             <a

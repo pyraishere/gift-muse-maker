@@ -14,13 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      gift_generation_stats: {
+        Row: {
+          created_at: string
+          id: string
+          total_generated: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          total_generated?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          total_generated?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_gift_count: { Args: { count_to_add?: number }; Returns: number }
     }
     Enums: {
       [_ in never]: never
