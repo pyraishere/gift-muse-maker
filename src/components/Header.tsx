@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center h-16 gap-6">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="p-2 bg-gradient-warm rounded-lg shadow-soft group-hover:scale-105 transition-transform">
@@ -24,19 +24,22 @@ export const Header = () => {
             </span>
           </Link>
 
-          {/* Navigation */}
+          {/* Navigation - Left aligned */}
           <nav className="flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
+              const isGiftIdeas = item.path === "/gift-ideas";
               return (
                 <Link
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                    "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
                     isActive
                       ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      : isGiftIdeas
+                        ? "bg-gradient-warm text-primary-foreground shadow-soft hover:opacity-90"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
                   <item.icon className="w-4 h-4" />
