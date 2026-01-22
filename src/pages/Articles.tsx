@@ -1,6 +1,16 @@
-import { FileText } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
+
+const articles = [
+  {
+    slug: "valentines-day-gift-ideas",
+    title: "Best Valentine's Day Gift Ideas (That People Actually Appreciate)",
+    description: "Discover thoughtful Valentine's Day gift ideas backed by research. From experience gifts to personalized items.",
+    icon: Heart,
+    readTime: "6 min read",
+  },
+];
 
 const Articles = () => {
   return (
@@ -18,18 +28,34 @@ const Articles = () => {
           </p>
         </header>
 
-        {/* Articles Grid - Empty State */}
+        {/* Articles Grid */}
         <main className="max-w-4xl mx-auto">
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="p-6 bg-muted/50 rounded-full mb-6">
-              <FileText className="w-12 h-12 text-muted-foreground" />
-            </div>
-            <h2 className="text-2xl font-semibold text-foreground mb-2">
-              Coming Soon
-            </h2>
-            <p className="text-muted-foreground max-w-md">
-              We're working on helpful articles about gift giving. Check back soon for tips on finding the perfect present for any occasion.
-            </p>
+          <div className="grid gap-6">
+            {articles.map((article) => (
+              <Link
+                key={article.slug}
+                to={`/gift-guides/${article.slug}`}
+                className="group block p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                    <article.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </h2>
+                    <p className="text-muted-foreground mb-3">
+                      {article.description}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span>{article.readTime}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </main>
       </div>

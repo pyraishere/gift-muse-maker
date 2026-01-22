@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Articles from "./pages/Articles";
-
+import ValentinesDayGiftIdeas from "./pages/articles/ValentinesDayGiftIdeas";
 import NotFound from "./pages/NotFound";
 import { CursorTrail } from "./components/CursorTrail";
 
@@ -21,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/gift-ideas" element={<Articles />} />
+          <Route path="/gift-guides/valentines-day-gift-ideas" element={<ValentinesDayGiftIdeas />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
