@@ -32,7 +32,7 @@ const Articles = () => {
             <p className="text-muted-foreground max-w-md">
               We're working on helpful articles about gift giving. Check back soon for tips on finding the perfect present for any occasion.
             </p>
-            <Link 
+            <Link
               to="/" 
               className="mt-6 text-primary hover:underline font-medium"
             >
