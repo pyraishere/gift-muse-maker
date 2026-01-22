@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Button } from "@/components/ui/button";
-import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles } from "lucide-react";
+import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles, Lightbulb } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -121,9 +122,15 @@ const Index = () => {
           <h1 className="text-5xl font-bold text-foreground mb-3">
             Arguably Best Gifts
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
             Thoughtful gift ideas when you're out of inspiration
           </p>
+          <Link to="/gift-ideas">
+            <Button variant="outline" className="gap-2">
+              <Lightbulb className="w-4 h-4" />
+              Browse Gift Ideas
+            </Button>
+          </Link>
         </header>
 
         {/* Main Content */}
