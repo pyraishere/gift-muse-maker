@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
+import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles, Lightbulb } from "lucide-react";
+import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -99,6 +99,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <Header />
       {/* Valentine's Day Banner */}
       <div className="bg-gradient-to-r from-pink-100 via-red-50 to-pink-100 border-b border-pink-200">
         <div className="container mx-auto px-4 py-2.5">
@@ -122,15 +123,9 @@ const Index = () => {
           <h1 className="text-5xl font-bold text-foreground mb-3">
             Arguably Best Gifts
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Thoughtful gift ideas when you're out of inspiration
           </p>
-          <Link to="/gift-ideas">
-            <Button variant="outline" className="gap-2">
-              <Lightbulb className="w-4 h-4" />
-              Browse Gift Ideas
-            </Button>
-          </Link>
         </header>
 
         {/* Main Content */}
