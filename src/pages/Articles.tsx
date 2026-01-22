@@ -1,17 +1,15 @@
-import { Gift, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Header } from "@/components/Header";
 
 const Articles = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <Header />
+      
       <div className="container mx-auto px-4 py-12">
-        {/* Header */}
+        {/* Page Header */}
         <header className="text-center mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Link to="/" className="p-4 bg-gradient-warm rounded-2xl shadow-soft hover:opacity-90 transition-opacity">
-              <Gift className="w-10 h-10 text-primary-foreground" />
-            </Link>
-          </div>
           <h1 className="text-5xl font-bold text-foreground mb-3">
             Gift Giving Articles
           </h1>
@@ -32,12 +30,6 @@ const Articles = () => {
             <p className="text-muted-foreground max-w-md">
               We're working on helpful articles about gift giving. Check back soon for tips on finding the perfect present for any occasion.
             </p>
-            <Link
-              to="/" 
-              className="mt-6 text-primary hover:underline font-medium"
-            >
-              ← Back to Gift Generator
-            </Link>
           </div>
         </main>
       </div>
