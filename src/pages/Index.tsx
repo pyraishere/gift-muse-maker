@@ -168,15 +168,9 @@ const Index = () => {
             </div>
           )}
 
-          {/* SEO Content Section */}
-          <HomepageSEOContent />
-        </main>
-
-        {/* Footer */}
-        <footer className="mt-16 text-center text-muted-foreground text-sm space-y-6">
           {/* Gift Ideas Counter */}
           {totalGenerated !== null && (
-            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+            <div className="flex items-center justify-center gap-2 text-muted-foreground mt-8">
               <Sparkles className="h-4 w-4 text-primary" />
               <span>
                 <span className="font-semibold text-foreground">{totalGenerated.toLocaleString()}</span> gift ideas already generated
@@ -184,6 +178,13 @@ const Index = () => {
               <Sparkles className="h-4 w-4 text-primary" />
             </div>
           )}
+
+          {/* SEO Content Section */}
+          <HomepageSEOContent />
+        </main>
+
+        {/* Footer */}
+        <footer className="mt-16 text-center text-muted-foreground text-sm space-y-6">
 
           <div className="flex items-center justify-center gap-3">
             <span className="text-primary font-medium">Help cover hosting costs</span>
