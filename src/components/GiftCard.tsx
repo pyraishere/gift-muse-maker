@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { getAmazonSearchUrl } from "@/lib/amazon-localization";
 
 export interface GiftIdea {
   title: string;
@@ -14,7 +15,7 @@ interface GiftCardProps {
 }
 
 export const GiftCard = ({ idea, index }: GiftCardProps) => {
-  const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(idea.keyword)}`;
+  const amazonSearchUrl = getAmazonSearchUrl(idea.keyword);
   const etsySearchUrl = `https://www.etsy.com/search?q=${encodeURIComponent(idea.keyword)}`;
 
   return (
