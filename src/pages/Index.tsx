@@ -103,7 +103,7 @@ const Index = () => {
       <Header />
       {/* Valentine's Day Banner */}
       <div className="bg-gradient-to-r from-pink-100 via-red-50 to-pink-100 border-b border-pink-200">
-        <div className="container mx-auto px-4 py-2.5">
+        <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-center gap-2 text-sm">
             <Heart className="w-4 h-4 text-red-400 fill-red-400 animate-pulse" />
             <span className="text-red-600 font-medium">Valentine's Day is coming!</span>
@@ -113,18 +113,18 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-6 lg:py-8">
         {/* Header */}
-        <header className="text-center mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-4 bg-gradient-warm rounded-2xl shadow-soft">
-              <Gift className="w-10 h-10 text-primary-foreground" />
+        <header className="text-center mb-6 lg:mb-8 animate-fade-in">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="p-3 bg-gradient-warm rounded-xl shadow-soft">
+              <Gift className="w-8 h-8 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-5xl font-bold text-foreground mb-3">
+          <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-2">
             Arguably Best Gifts
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             Thoughtful gift ideas when you're out of inspiration
           </p>
         </header>

@@ -38,20 +38,20 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
   };
 
   return (
-    <Card className="p-8 shadow-card animate-fade-in">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-gradient-warm rounded-xl">
-          <Gift className="w-6 h-6 text-primary-foreground" />
+    <Card className="p-6 lg:p-7 shadow-card animate-fade-in">
+      <div className="flex items-center gap-3 mb-5">
+        <div className="p-2.5 bg-gradient-warm rounded-xl">
+          <Gift className="w-5 h-5 text-primary-foreground" />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold text-foreground">Find the Perfect Gift</h2>
-          <p className="text-muted-foreground">Tell us about the special person</p>
+          <h2 className="text-xl lg:text-2xl font-semibold text-foreground">Find the Perfect Gift</h2>
+          <p className="text-sm text-muted-foreground">Tell us about the special person</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="space-y-2">
-          <Label htmlFor="recipient" className="text-foreground font-medium">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="recipient" className="text-foreground font-medium text-sm">
             Who is this gift for?
           </Label>
           <Input
@@ -61,12 +61,12 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
             value={formData.recipient}
             onChange={handleChange}
             required
-            className="border-input bg-background"
+            className="border-input bg-background h-9"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="age" className="text-foreground font-medium">
+        <div className="space-y-1.5">
+          <Label htmlFor="age" className="text-foreground font-medium text-sm">
             Their age
           </Label>
           <Input
@@ -77,12 +77,12 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
             value={formData.age}
             onChange={handleChange}
             required
-            className="border-input bg-background"
+            className="border-input bg-background h-9"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="interests" className="text-foreground font-medium">
+        <div className="space-y-1.5">
+          <Label htmlFor="interests" className="text-foreground font-medium text-sm">
             What are their interests?
           </Label>
           <Textarea
@@ -92,13 +92,13 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
             value={formData.interests}
             onChange={handleChange}
             required
-            className="border-input bg-background min-h-[100px] resize-none"
+            className="border-input bg-background min-h-[80px] resize-none text-sm"
           />
         </div>
 
 
-        <div className="space-y-2">
-          <Label htmlFor="occasion" className="text-foreground font-medium">
+        <div className="space-y-1.5">
+          <Label htmlFor="occasion" className="text-foreground font-medium text-sm">
             What's the occasion?
           </Label>
           <Input
@@ -108,14 +108,14 @@ export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
             value={formData.occasion}
             onChange={handleChange}
             required
-            className="border-input bg-background"
+            className="border-input bg-background h-9"
           />
         </div>
 
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-gradient-warm text-primary-foreground hover:opacity-90 transition-opacity shadow-soft h-12 text-base font-medium"
+          className="w-full bg-gradient-warm text-primary-foreground hover:opacity-90 transition-opacity shadow-soft h-10 text-sm font-medium mt-2"
         >
           {isLoading ? (
             <span className="flex items-center gap-2">
