@@ -168,16 +168,31 @@ const Index = () => {
             </div>
           )}
 
-          {/* Gift Ideas Counter */}
-          {totalGenerated !== null && (
-            <div className="flex items-center justify-center gap-2 text-muted-foreground mt-8">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span>
-                <span className="font-semibold text-foreground">{totalGenerated.toLocaleString()}</span> gift ideas already generated
-              </span>
-              <Sparkles className="h-4 w-4 text-primary" />
+          {/* Gift Ideas Counter & Support */}
+          <div className="flex flex-col items-center gap-4 mt-8">
+            {totalGenerated !== null && (
+              <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <span>
+                  <span className="font-semibold text-foreground">{totalGenerated.toLocaleString()}</span> gift ideas already generated
+                </span>
+                <Sparkles className="h-4 w-4 text-primary" />
+              </div>
+            )}
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-primary font-medium">Help cover hosting costs</span>
+              <a
+                href="https://buymeacoffee.com/arguablybestgifts"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="gap-2 bg-gradient-warm text-primary-foreground hover:opacity-90 shadow-soft">
+                  <Coffee className="h-4 w-4" />
+                  Buy me a coffee
+                </Button>
+              </a>
             </div>
-          )}
+          </div>
 
           {/* SEO Content Section */}
           <HomepageSEOContent />
@@ -185,20 +200,6 @@ const Index = () => {
 
         {/* Footer */}
         <footer className="mt-16 text-center text-muted-foreground text-sm space-y-6">
-
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-primary font-medium">Help cover hosting costs</span>
-            <a
-              href="https://buymeacoffee.com/arguablybestgifts"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="gap-2 bg-gradient-warm text-primary-foreground hover:opacity-90 shadow-soft">
-                <Coffee className="h-4 w-4" />
-                Buy me a coffee
-              </Button>
-            </a>
-          </div>
 
           {/* Share Buttons */}
           <div className="flex flex-col items-center gap-3">
