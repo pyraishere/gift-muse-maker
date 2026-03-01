@@ -3,6 +3,7 @@ import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Header } from "@/components/Header";
 import { HomepageSEOContent } from "@/components/HomepageSEOContent";
+import { HomepageJsonLd } from "@/components/HomepageJsonLd";
 import { Button } from "@/components/ui/button";
 import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -100,6 +101,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <HomepageJsonLd />
       <Header />
       {/* Valentine's Day Banner */}
       <div className="bg-gradient-to-r from-pink-100 via-red-50 to-pink-100 border-b border-pink-200">
@@ -122,10 +124,10 @@ const Index = () => {
             </div>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-2">
-            Arguably Best Gifts
+            Best Gift Ideas for Any Occasion
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Thoughtful gift ideas when you're out of inspiration
+            Free AI-powered gift idea generator — personalized recommendations in seconds
           </p>
         </header>
 
