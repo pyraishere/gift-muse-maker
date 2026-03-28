@@ -103,17 +103,6 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-subtle">
       <HomepageJsonLd />
       <Header />
-      {/* Valentine's Day Banner */}
-      <div className="bg-gradient-to-r from-pink-100 via-red-50 to-pink-100 border-b border-pink-200">
-        <div className="container mx-auto px-4 py-2">
-          <div className="flex items-center justify-center gap-2 text-sm">
-            <Heart className="w-4 h-4 text-red-400 fill-red-400 animate-pulse" />
-            <span className="text-red-600 font-medium">Valentine's Day is coming!</span>
-            <span className="text-muted-foreground">Find the perfect gift for your special someone</span>
-            <Heart className="w-4 h-4 text-red-400 fill-red-400 animate-pulse" />
-          </div>
-        </div>
-      </div>
 
       <div className="container mx-auto px-4 py-6 lg:py-8">
         {/* Header */}
