@@ -9,6 +9,10 @@ import { Gift, Sparkles } from "lucide-react";
 interface GiftFormProps {
   onSubmit: (data: GiftFormData) => void;
   isLoading: boolean;
+  defaults?: Partial<GiftFormData>;
+  hideFields?: Array<keyof GiftFormData>;
+  title?: string;
+  subtitle?: string;
 }
 
 export interface GiftFormData {
@@ -18,13 +22,15 @@ export interface GiftFormData {
   occasion: string;
 }
 
-export const GiftForm = ({ onSubmit, isLoading }: GiftFormProps) => {
+export const GiftForm = ({ onSubmit, isLoading, defaults, hideFields = [], title, subtitle }: GiftFormProps) => {
   const [formData, setFormData] = useState<GiftFormData>({
-    recipient: "",
-    age: "",
-    interests: "",
-    occasion: "",
+    recipient: defaults?.recipient ?? "",
+    age: defaults?.age ?? "",
+    interests: defaults?.interests ?? "",
+    occasion: defaults?.occasion ?? "",
   });
+
+  const isHidden = (f: keyof GiftFormData) => hideFields.includes(f);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
