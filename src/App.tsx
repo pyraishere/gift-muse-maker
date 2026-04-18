@@ -11,6 +11,7 @@ import { CursorTrail } from "./components/CursorTrail";
 
 // Lazy load article pages for better performance
 const ValentinesDayGiftIdeas = lazy(() => import("./pages/articles/ValentinesDayGiftIdeas"));
+const AiGiftGeneratorBoyfriend = lazy(() => import("./pages/AiGiftGeneratorBoyfriend"));
 
 const queryClient = new QueryClient();
 
