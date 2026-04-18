@@ -50,73 +50,80 @@ export const GiftForm = ({ onSubmit, isLoading, defaults, hideFields = [], title
           <Gift className="w-5 h-5 text-primary-foreground" />
         </div>
         <div>
-          <h2 className="text-xl lg:text-2xl font-semibold text-foreground">Find the Perfect Gift</h2>
-          <p className="text-sm text-muted-foreground">Tell us about the special person</p>
+          <h2 className="text-xl lg:text-2xl font-semibold text-foreground">{title ?? "Find the Perfect Gift"}</h2>
+          <p className="text-sm text-muted-foreground">{subtitle ?? "Tell us about the special person"}</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1.5">
-          <Label htmlFor="recipient" className="text-foreground font-medium text-sm">
-            Who is this gift for?
-          </Label>
-          <Input
-            id="recipient"
-            name="recipient"
-            placeholder="e.g., Mom, Best Friend, Colleague"
-            value={formData.recipient}
-            onChange={handleChange}
-            required
-            className="border-input bg-background h-9"
-          />
-        </div>
+        {!isHidden("recipient") && (
+          <div className="space-y-1.5">
+            <Label htmlFor="recipient" className="text-foreground font-medium text-sm">
+              Who is this gift for?
+            </Label>
+            <Input
+              id="recipient"
+              name="recipient"
+              placeholder="e.g., Mom, Best Friend, Colleague"
+              value={formData.recipient}
+              onChange={handleChange}
+              required
+              className="border-input bg-background h-9"
+            />
+          </div>
+        )}
 
-        <div className="space-y-1.5">
-          <Label htmlFor="age" className="text-foreground font-medium text-sm">
-            Their age
-          </Label>
-          <Input
-            id="age"
-            name="age"
-            type="number"
-            placeholder="e.g., 35"
-            value={formData.age}
-            onChange={handleChange}
-            required
-            className="border-input bg-background h-9"
-          />
-        </div>
+        {!isHidden("age") && (
+          <div className="space-y-1.5">
+            <Label htmlFor="age" className="text-foreground font-medium text-sm">
+              Their age
+            </Label>
+            <Input
+              id="age"
+              name="age"
+              type="number"
+              placeholder="e.g., 35"
+              value={formData.age}
+              onChange={handleChange}
+              required
+              className="border-input bg-background h-9"
+            />
+          </div>
+        )}
 
-        <div className="space-y-1.5">
-          <Label htmlFor="interests" className="text-foreground font-medium text-sm">
-            What are their interests?
-          </Label>
-          <Textarea
-            id="interests"
-            name="interests"
-            placeholder="e.g., Gardening, cooking, reading mystery novels"
-            value={formData.interests}
-            onChange={handleChange}
-            required
-            className="border-input bg-background min-h-[80px] resize-none text-sm"
-          />
-        </div>
+        {!isHidden("interests") && (
+          <div className="space-y-1.5">
+            <Label htmlFor="interests" className="text-foreground font-medium text-sm">
+              What are their interests?
+            </Label>
+            <Textarea
+              id="interests"
+              name="interests"
+              placeholder="e.g., Gardening, cooking, reading mystery novels"
+              value={formData.interests}
+              onChange={handleChange}
+              required
+              className="border-input bg-background min-h-[80px] resize-none text-sm"
+            />
+          </div>
+        )}
 
-
-        <div className="space-y-1.5">
-          <Label htmlFor="occasion" className="text-foreground font-medium text-sm">
-            What's the occasion?
-          </Label>
-          <Input
-            id="occasion"
-            name="occasion"
-            placeholder="e.g., Birthday, Anniversary, Just Because"
-            value={formData.occasion}
-            onChange={handleChange}
-            required
-            className="border-input bg-background h-9"
-          />
-        </div>
+        {!isHidden("occasion") && (
+          <div className="space-y-1.5">
+            <Label htmlFor="occasion" className="text-foreground font-medium text-sm">
+              What's the occasion?
+            </Label>
+            <Input
+              id="occasion"
+              name="occasion"
+              placeholder="e.g., Birthday, Anniversary, Just Because"
+              value={formData.occasion}
+              onChange={handleChange}
+              required
+              className="border-input bg-background h-9"
+            />
+          </div>
+        )}
 
         <Button
           type="submit"
