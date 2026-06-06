@@ -6,7 +6,7 @@ import { Sparkles } from "lucide-react";
 const ValentinesDayGiftIdeas = () => {
   return (
     <ArticleLayout
-      title="Best Valentine's Day Gift Ideas (That People Actually Appreciate)"
+      title="Best Valentine's Day Gift Ideas for 2026"
       description="Discover thoughtful Valentine's Day gift ideas backed by research. From experience gifts to personalized items, find gifts that create lasting impressions."
       canonicalUrl="/gift-guides/valentines-day-gift-ideas"
       publishDate="January 22, 2026"

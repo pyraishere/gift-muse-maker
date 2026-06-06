@@ -1,0 +1,19 @@
+# Arguably Best Gifts
+
+> Free AI-powered gift idea generator. Get 6 personalized gift recommendations in seconds for any recipient, age, interest, and occasion.
+
+Arguably Best Gifts helps people find thoughtful presents fast. Enter who the gift is for, their age, their interests, and the occasion — our AI returns six tailored gift ideas with Amazon and Etsy search links for each one. No signup required, no budget filter, no affiliate fluff. We also publish research-backed gift guides for major occasions.
+
+## Pages
+
+- [Home — AI gift idea generator](/): Main generator. Enter recipient, age, interests, occasion → get 6 ideas with shopping links.
+- [Gift guides & articles](/gift-ideas): Index of editorial gift guides for different occasions and recipients.
+- [AI gift generator for boyfriend](/ai-gift-generator-for-boyfriend): Landing page targeting boyfriend gift ideas, reuses the main generator.
+
+## Gift guides
+
+- [Best Valentine's Day gift ideas for 2026](/gift-guides/valentines-day-gift-ideas): Research-backed Valentine's gift ideas across experiences, personalized items, practical picks, subscriptions, and last-minute options.
+
+## Optional
+
+- [Sitemap](/sitemap.xml): XML sitemap of all indexable pages.
