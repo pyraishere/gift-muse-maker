@@ -9,6 +9,7 @@ interface ArticleLayoutProps {
   canonicalUrl?: string;
   publishDate?: string;
   readTime?: string;
+  author?: string;
   children: React.ReactNode;
 }
 
@@ -18,10 +19,33 @@ export const ArticleLayout = ({
   canonicalUrl,
   publishDate,
   readTime,
+  author = "Arguably Best Gifts",
   children,
 }: ArticleLayoutProps) => {
   const siteUrl = "https://arguablybestgifts.com";
   const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : undefined;
+
+  const parsedDate = publishDate ? new Date(publishDate) : null;
+  const isoDate = parsedDate && !isNaN(parsedDate.getTime())
+    ? parsedDate.toISOString()
+    : undefined;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    ...(isoDate && { datePublished: isoDate, dateModified: isoDate }),
+    author: { "@type": "Organization", name: author },
+    publisher: {
+      "@type": "Organization",
+      name: "Arguably Best Gifts",
+      url: siteUrl,
+    },
+    ...(fullCanonicalUrl && {
+      mainEntityOfPage: { "@type": "WebPage", "@id": fullCanonicalUrl },
+    }),
+  };
 
   return (
     <>
@@ -37,6 +61,7 @@ export const ArticleLayout = ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:site" content="@arguablybest" />
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-subtle">
