@@ -1,34 +1,30 @@
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import type { ReactNode } from "react";
 
 interface ArticleLayoutProps {
   title: string;
-  description: string;
-  canonicalUrl?: string;
   publishDate?: string;
   readTime?: string;
-  author?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const ArticleLayout = ({
-  title,
-  description,
-  canonicalUrl,
-  publishDate,
-  readTime,
-  author = "Arguably Best Gifts",
-  children,
-}: ArticleLayoutProps) => {
-  const siteUrl = "https://arguablybestgifts.com";
-  const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : undefined;
+import { pageHead, SITE_NAME, SITE_URL } from "@/lib/seo";
 
+type ArticleMeta = {
+  title: string;
+  description: string;
+  path: string;
+  publishDate?: string;
+  author?: string;
+};
+
+/** Server-rendered head tags + Article JSON-LD for an article route. */
+export const articleHead = ({ title, description, path, publishDate, author = SITE_NAME }: ArticleMeta) => {
+  const url = `${SITE_URL}${path}`;
   const parsedDate = publishDate ? new Date(publishDate) : null;
-  const isoDate = parsedDate && !isNaN(parsedDate.getTime())
-    ? parsedDate.toISOString()
-    : undefined;
-
+  const isoDate = parsedDate && !isNaN(parsedDate.getTime()) ? parsedDate.toISOString() : undefined;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -36,16 +32,33 @@ export const ArticleLayout = ({
     description,
     ...(isoDate && { datePublished: isoDate, dateModified: isoDate }),
     author: { "@type": "Organization", name: author },
-    publisher: {
-      "@type": "Organization",
-      name: "Arguably Best Gifts",
-      url: siteUrl,
-    },
-    ...(fullCanonicalUrl && {
-      mainEntityOfPage: { "@type": "WebPage", "@id": fullCanonicalUrl },
-    }),
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Gift Ideas & Guides", item: `${SITE_URL}/gift-ideas` },
+      { "@type": "ListItem", position: 3, name: title, item: url },
+    ],
+  };
+  return pageHead({
+    title: `${title} | ${SITE_NAME}`,
+    description,
+    path,
+    type: "article",
+    jsonLd: [articleJsonLd, breadcrumbJsonLd],
+  });
+};
 
+export const ArticleLayout = ({
+  title,
+  publishDate,
+  readTime,
+  children,
+}: ArticleLayoutProps) => {
   return (
     <>
       <div className="min-h-screen bg-gradient-subtle">
