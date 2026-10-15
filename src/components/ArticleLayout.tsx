@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
@@ -49,21 +48,6 @@ export const ArticleLayout = ({
 
   return (
     <>
-      <Helmet>
-        <title>{title} | Arguably Best Gifts</title>
-        <meta name="description" content={description} />
-        {fullCanonicalUrl && <link rel="canonical" href={fullCanonicalUrl} />}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:type" content="article" />
-        {fullCanonicalUrl && <meta property="og:url" content={fullCanonicalUrl} />}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:site" content="@arguablybest" />
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
-
       <div className="min-h-screen bg-gradient-subtle">
         <Header />
 

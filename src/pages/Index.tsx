@@ -3,7 +3,6 @@ import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Header } from "@/components/Header";
 import { HomepageSEOContent } from "@/components/HomepageSEOContent";
-import { HomepageJsonLd } from "@/components/HomepageJsonLd";
 import { Button } from "@/components/ui/button";
 import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -101,7 +100,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <HomepageJsonLd />
       <Header />
 
       <div className="container mx-auto px-4 py-6 lg:py-8">

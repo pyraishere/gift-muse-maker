@@ -1,6 +1,5 @@
 import { Heart, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 
 const articles = [
@@ -16,27 +15,6 @@ const articles = [
 const Articles = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <Helmet>
-        <title>Gift Guides & Articles — Arguably Best Gifts</title>
-        <meta
-          name="description"
-          content="Browse our gift guides: research-backed ideas for Valentine's Day, birthdays, anniversaries, and more. Find the perfect gift faster."
-        />
-        <link rel="canonical" href="https://arguablybestgifts.com/gift-ideas" />
-        <meta property="og:title" content="Gift Guides & Articles — Arguably Best Gifts" />
-        <meta
-          property="og:description"
-          content="Browse our research-backed gift guides for every occasion: Valentine's, birthdays, anniversaries, and more."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://arguablybestgifts.com/gift-ideas" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gift Guides & Articles — Arguably Best Gifts" />
-        <meta
-          name="twitter:description"
-          content="Research-backed gift guides for every occasion."
-        />
-      </Helmet>
       <Header />
       
       <div className="container mx-auto px-4 py-12">

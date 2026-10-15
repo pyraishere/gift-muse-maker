@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
@@ -8,68 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Gift, Sparkles, Zap, Heart, ShieldCheck, RotateCcw, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
-
-const PAGE_URL = "https://arguablybestgifts.com/ai-gift-generator-for-boyfriend";
-
-const SeoHead = () => {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = "AI Gift Generator for Boyfriend (Free & Instant Ideas 2026)";
-
-    const setMeta = (name: string, content: string, attr: "name" | "property" = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-      return el;
-    };
-
-    const desc = "Find the perfect gift for your boyfriend in seconds with our free AI gift generator. No signup needed.";
-    const m1 = setMeta("description", desc);
-    const m2 = setMeta("og:title", "AI Gift Generator for Boyfriend (Free & Instant Ideas 2026)", "property");
-    const m3 = setMeta("og:description", desc, "property");
-    const m4 = setMeta("og:url", PAGE_URL, "property");
-    const m5 = setMeta("twitter:title", "AI Gift Generator for Boyfriend");
-    const m6 = setMeta("twitter:description", desc);
-
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    const prevHref = canonical?.getAttribute("href") ?? null;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", PAGE_URL);
-
-    const ld = document.createElement("script");
-    ld.type = "application/ld+json";
-    ld.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: "AI Gift Generator for Boyfriend",
-      url: PAGE_URL,
-      description: desc,
-      breadcrumb: {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://arguablybestgifts.com/" },
-          { "@type": "ListItem", position: 2, name: "AI Gift Generator for Boyfriend", item: PAGE_URL },
-        ],
-      },
-    });
-    document.head.appendChild(ld);
-
-    return () => {
-      document.title = prevTitle;
-      if (prevHref) canonical?.setAttribute("href", prevHref);
-      ld.remove();
-    };
-  }, []);
-  return null;
-};
 
 const AiGiftGeneratorBoyfriend = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
@@ -120,7 +58,6 @@ const AiGiftGeneratorBoyfriend = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <SeoHead />
       <Header />
 
       <div className="container mx-auto px-4 py-6 lg:py-8">
