@@ -8,7 +8,6 @@ interface TrailPoint {
 
 export const CursorTrail = () => {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
-  const [idCounter, setIdCounter] = useState(0);
 
   useEffect(() => {
     // Target follows the mouse instantly, drawn line eases toward it (lerp)
