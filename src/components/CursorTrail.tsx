@@ -20,7 +20,7 @@ export const CursorTrail = () => {
       target.y = e.clientY;
       if (!hasMoved) {
         hasMoved = true;
-        for (let i = 0; i < 12; i++) current.push({ x: e.clientX, y: e.clientY });
+        for (let i = 0; i < 22; i++) current.push({ x: e.clientX, y: e.clientY });
       }
     };
 
@@ -84,8 +84,8 @@ export const CursorTrail = () => {
         <path
           d={getSmoothPath(trail)}
           fill="none"
-          stroke="hsl(12 88% 65% / 0.35)"
-          strokeWidth="1.5"
+          stroke="hsl(12 88% 65% / 0.45)"
+          strokeWidth="2.75"
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{
