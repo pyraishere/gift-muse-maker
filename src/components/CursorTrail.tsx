@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 interface TrailPoint {
-  id: number;
   x: number;
   y: number;
 }
