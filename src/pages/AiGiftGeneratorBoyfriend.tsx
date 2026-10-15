@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Gift, Sparkles, Zap, Heart, ShieldCheck, RotateCcw, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
+import { generateGifts as generateGiftIdeas } from "@/lib/generate-gifts.functions";
 
 const AiGiftGeneratorBoyfriend = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);

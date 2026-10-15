@@ -30,37 +30,11 @@ Respond with a JSON array containing exactly 6 objects, each with:
 
 Only output the JSON array, nothing else.`;
 
-    // Prefer the project's own OpenAI key when configured; otherwise use the built-in AI gateway.
+    // Prefer the project's own OpenAI key (original behaviour); otherwise use the built-in AI gateway.
     const openAiKey = process.env["OPENAI_API_KEY"];
-    const lovableKey = process.env["LOVABLE_API_KEY"];
-    const endpoint = openAiKey
-      ? "https://api.openai.com/v1/chat/completions"
-      : "https://ai.gateway.lovable.dev/v1/chat/completions";
-    const apiKey = openAiKey ?? lovableKey;
-    const model = openAiKey ? "gpt-4o-mini" : "google/gemini-2.5-flash";
-    if (!apiKey) throw new Error("AI is not configured");
-
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: userPrompt },
-        ],
-      }),
-    });
-
-    if (!response.ok) {
-      console.error("AI gateway error:", response.status, await response.text());
-      if (response.status === 429) throw new Error("Rate limit exceeded. Please try again in a moment.");
-      if (response.status === 402) throw new Error("AI credits exhausted. Please add credits to continue.");
-      throw new Error("Failed to generate gift ideas");
-    }
-
-    const json = (await response.json()) as { choices?: { message?: { content?: string } }[] };
-    const content = json.choices?.[0]?.message?.content ?? "";
+    const content = openAiKey
+      ? await callOpenAi(openAiKey, userPrompt)
+      : await callLovableGateway(userPrompt);
     const match = content.match(/\[[\s\S]*\]/);
     if (!match) throw new Error("Failed to parse gift suggestions");
 
@@ -85,3 +59,100 @@ Only output the JSON array, nothing else.`;
 
     return { giftIdeas };
   });
+
+function throwForStatus(status: number): never {
+  if (status === 429) throw new Error("Rate limit exceeded. Please try again in a moment.");
+  if (status === 402) throw new Error("AI credits exhausted. Please add credits to continue.");
+  throw new Error("Failed to generate gift ideas");
+}
+
+async function callOpenAi(apiKey: string, userPrompt: string): Promise<string> {
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        { role: "user", content: userPrompt },
+      ],
+    }),
+  });
+  if (!response.ok) {
+    console.error("AI error:", response.status, await response.text());
+    throwForStatus(response.status);
+  }
+  const json = (await response.json()) as { choices?: { message?: { content?: string } }[] };
+  return json.choices?.[0]?.message?.content ?? "";
+}
+
+const IDEAS_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["ideas"],
+  properties: {
+    ideas: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["title", "description", "keyword"],
+        properties: {
+          title: { type: "string" },
+          description: { type: "string" },
+          keyword: { type: "string" },
+        },
+      },
+    },
+  },
+};
+
+/** Streams a Responses call through the Lovable AI Gateway and returns the ideas as a JSON array string. */
+async function callLovableGateway(userPrompt: string): Promise<string> {
+  const apiKey = process.env["LOVABLE_API_KEY"];
+  if (!apiKey) throw new Error("AI is not configured");
+  const response = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "fetch" },
+    body: JSON.stringify({
+      model: "openai/gpt-6-astra",
+      instructions: SYSTEM_PROMPT,
+      input: userPrompt,
+      stream: true,
+      store: false,
+      reasoning: { effort: "low", summary: "auto" },
+      include: ["reasoning.encrypted_content"],
+      text: { format: { type: "json_schema", name: "gift_ideas", strict: true, schema: IDEAS_SCHEMA } },
+    }),
+  });
+  if (!response.ok || !response.body) {
+    console.error("AI gateway error:", response.status, await response.text());
+    throwForStatus(response.status);
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let text = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+    for (const line of lines) {
+      if (!line.startsWith("data:")) continue;
+      const payload = line.slice(5).trim();
+      if (!payload || payload === "[DONE]") continue;
+      try {
+        const event = JSON.parse(payload) as { type?: string; delta?: string };
+        if (event.type === "response.output_text.delta" && event.delta) text += event.delta;
+        if (event.type === "error" || event.type === "response.failed") throwForStatus(500);
+      } catch (err) {
+        if (err instanceof Error && err.message !== "Unexpected end of JSON input" && !(err instanceof SyntaxError)) throw err;
+      }
+    }
+  }
+  const parsed = JSON.parse(text) as { ideas?: GeneratedGiftIdea[] };
+  return JSON.stringify(parsed.ideas ?? []);
+}
