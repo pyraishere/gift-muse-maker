@@ -1,5 +1,5 @@
 import { Header } from "./Header";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import type { ReactNode } from "react";
 

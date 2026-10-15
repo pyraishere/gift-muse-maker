@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArticleLayout } from "@/components/ArticleLayout";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";

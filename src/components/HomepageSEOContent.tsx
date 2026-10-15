@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Sparkles, Heart, Gift, Clock, HelpCircle, CheckCircle } from "lucide-react";
 
 export const HomepageSEOContent = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Header } from "@/components/Header";
