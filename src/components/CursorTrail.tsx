@@ -86,12 +86,12 @@ export const CursorTrail = () => {
         <path
           d={getSmoothPath(trail)}
           fill="none"
-          stroke="hsl(12 88% 65%)"
-          strokeWidth="3"
+          stroke="hsl(12 88% 65% / 0.35)"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{
-            filter: "drop-shadow(0 0 8px hsl(12 88% 65% / 0.7))",
+            filter: "drop-shadow(0 0 4px hsl(12 88% 65% / 0.25))",
           }}
         />
       )}
