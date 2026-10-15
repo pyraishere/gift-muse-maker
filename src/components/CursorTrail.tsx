@@ -31,6 +31,7 @@ export const CursorTrail = () => {
         let prevY = target.y;
         for (let i = current.length - 1; i >= 0; i--) {
           const p = current[i];
+          if (!p) continue;
           const ease = i === current.length - 1 ? 0.18 : 0.3;
           p.x += (prevX - p.x) * ease;
           p.y += (prevY - p.y) * ease;
@@ -52,14 +53,16 @@ export const CursorTrail = () => {
 
   // Generate smooth bezier curve path
   const getSmoothPath = (points: TrailPoint[]) => {
-    if (points.length < 2) return "";
+    const first = points[0];
+    if (points.length < 2 || !first) return "";
     
-    let path = `M ${points[0].x} ${points[0].y}`;
+    let path = `M ${first.x} ${first.y}`;
     
     for (let i = 1; i < points.length - 1; i++) {
       const prev = points[i - 1];
       const curr = points[i];
       const next = points[i + 1];
+      if (!curr || !next) continue;
       
       // Calculate control point (midpoint between current and next)
       const cpX = (curr.x + next.x) / 2;
@@ -70,8 +73,8 @@ export const CursorTrail = () => {
     }
     
     // Add the last point
-    if (points.length > 1) {
-      const last = points[points.length - 1];
+    const last = points[points.length - 1];
+    if (last) {
       path += ` L ${last.x} ${last.y}`;
     }
     

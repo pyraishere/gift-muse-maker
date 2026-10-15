@@ -3,13 +3,13 @@ import { GiftForm, GiftFormData } from "@/components/GiftForm";
 import { GiftCard, GiftIdea } from "@/components/GiftCard";
 import { Header } from "@/components/Header";
 import { HomepageSEOContent } from "@/components/HomepageSEOContent";
-import { HomepageJsonLd } from "@/components/HomepageJsonLd";
 import { Button } from "@/components/ui/button";
 import { Gift, RotateCcw, RefreshCw, Coffee, Share2, Heart, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 import confetti from "canvas-confetti";
+import { generateGifts as generateGiftIdeas } from "@/lib/generate-gifts.functions";
 
 const Index = () => {
   const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
@@ -36,22 +36,7 @@ const Index = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-gifts`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to generate gift ideas");
-      }
+      const data = await generateGiftIdeas({ data: formData });
 
       setGiftIdeas(data.giftIdeas);
       
@@ -101,7 +86,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <HomepageJsonLd />
       <Header />
 
       <div className="container mx-auto px-4 py-6 lg:py-8">

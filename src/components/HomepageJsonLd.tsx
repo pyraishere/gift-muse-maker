@@ -1,6 +1,4 @@
-import { Helmet } from "react-helmet-async";
-
-export const HomepageJsonLd = () => {
+export const getHomepageJsonLd = (): object[] => {
   const siteUrl = "https://arguablybestgifts.com";
 
   const organizationSchema = {
@@ -122,23 +120,5 @@ export const HomepageJsonLd = () => {
     ],
   };
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(websiteSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(webAppSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(breadcrumbSchema)}
-      </script>
-    </Helmet>
-  );
+  return [organizationSchema, websiteSchema, webAppSchema, faqSchema, breadcrumbSchema];
 };

@@ -1,0 +1,3 @@
+{"functions": [
+  {"name": "generate-gifts", "classification": "internal-only", "signal": "called via /functions/v1/generate-gifts fetch from src/pages/Index.tsx and src/pages/AiGiftGeneratorBoyfriend.tsx", "outcome": "migrated"}
+]}

@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArticleLayout } from "@/components/ArticleLayout";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 
+export const VALENTINES_ARTICLE = {
+  title: "Best Valentine's Day Gift Ideas for 2026",
+  description:
+    "Discover thoughtful Valentine's Day gift ideas backed by research. From experience gifts to personalized items, find gifts that create lasting impressions.",
+  path: "/gift-guides/valentines-day-gift-ideas",
+  publishDate: "January 22, 2026",
+};
+
 const ValentinesDayGiftIdeas = () => {
   return (
     <ArticleLayout
-      title="Best Valentine's Day Gift Ideas for 2026"
-      description="Discover thoughtful Valentine's Day gift ideas backed by research. From experience gifts to personalized items, find gifts that create lasting impressions."
-      canonicalUrl="/gift-guides/valentines-day-gift-ideas"
-      publishDate="January 22, 2026"
+      title={VALENTINES_ARTICLE.title}
+      publishDate={VALENTINES_ARTICLE.publishDate}
       readTime="6 min read"
     >
       <p className="text-xl leading-relaxed mb-8">
