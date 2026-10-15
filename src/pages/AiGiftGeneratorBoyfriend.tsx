@@ -19,16 +19,7 @@ const AiGiftGeneratorBoyfriend = () => {
   const generateGifts = async (formData: GiftFormData) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-gifts`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Failed to generate gift ideas");
+      const data = await generateGiftIdeas({ data: formData });
       setGiftIdeas(data.giftIdeas);
       confetti({
         particleCount: 100,
