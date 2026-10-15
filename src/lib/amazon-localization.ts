@@ -78,7 +78,7 @@ function detectCountryFromLanguage(): string {
     const parts = language.split('-');
     
     if (parts.length >= 2) {
-      const region = parts[1].toUpperCase();
+      const region = (parts[1] ?? '').toUpperCase();
       if (amazonDomains[region]) {
         return region;
       }
@@ -97,7 +97,7 @@ function detectCountryFromLanguage(): string {
       pt: 'BR',
     };
     
-    const langCode = parts[0].toLowerCase();
+    const langCode = (parts[0] ?? '').toLowerCase();
     return langToCountry[langCode] || 'US';
   } catch {
     return 'US';
