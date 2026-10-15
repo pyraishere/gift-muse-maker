@@ -11,27 +11,45 @@ export const CursorTrail = () => {
   const [idCounter, setIdCounter] = useState(0);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const newPoint: TrailPoint = {
-        id: idCounter,
-        x: e.clientX,
-        y: e.clientY,
-      };
+    // Target follows the mouse instantly, drawn line eases toward it (lerp)
+    const target = { x: 0, y: 0 };
+    const current: { x: number; y: number }[] = [];
+    let raf = 0;
+    let hasMoved = false;
 
-      setIdCounter((prev) => prev + 1);
-      setTrail((prev) => [...prev.slice(-20), newPoint]);
+    const handleMouseMove = (e: MouseEvent) => {
+      target.x = e.clientX;
+      target.y = e.clientY;
+      if (!hasMoved) {
+        hasMoved = true;
+        for (let i = 0; i < 12; i++) current.push({ x: e.clientX, y: e.clientY });
+      }
+    };
+
+    const animate = () => {
+      if (hasMoved) {
+        // Ease each point toward the one in front of it for buttery motion
+        let prevX = target.x;
+        let prevY = target.y;
+        for (let i = current.length - 1; i >= 0; i--) {
+          const p = current[i];
+          const ease = i === current.length - 1 ? 0.18 : 0.3;
+          p.x += (prevX - p.x) * ease;
+          p.y += (prevY - p.y) * ease;
+          prevX = p.x;
+          prevY = p.y;
+        }
+        setTrail(current.map((p) => ({ ...p })));
+      }
+      raf = requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [idCounter]);
-
-  useEffect(() => {
-    const cleanup = setInterval(() => {
-      setTrail((prev) => prev.slice(1));
-    }, 30);
-
-    return () => clearInterval(cleanup);
+    raf = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   // Generate smooth bezier curve path
