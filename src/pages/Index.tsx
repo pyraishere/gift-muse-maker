@@ -100,7 +100,7 @@ const Index = () => {
             Best Gift Ideas for Any Occasion
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Free AI-powered gift idea generator — personalized recommendations in seconds
+            Personalized gift ideas for your boyfriend, girlfriend, family & friends — free, in seconds
           </p>
         </header>
 

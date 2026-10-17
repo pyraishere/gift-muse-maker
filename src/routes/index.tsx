@@ -6,9 +6,9 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () =>
     pageHead({
-      title: "AI Gift Idea Generator 2026 — Arguably Best Gifts",
+      title: "Gift Ideas for Boyfriend, Girlfriend & Family — Free AI Generator",
       description:
-        "Free AI gift idea generator. Personalized gift recommendations for birthdays, Christmas, Valentine's Day, anniversaries & more.",
+        "Stuck on what to buy? Get 6 personalized gift ideas for your boyfriend, girlfriend, mom, dad or friend in under 30 seconds. Free, no signup.",
       path: "/",
       jsonLd: getHomepageJsonLd(),
     }),
